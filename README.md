@@ -1,8 +1,3 @@
-<div align="center">
-  <a href="https://khulnasoft.com" alt="khulnasoft"><img width="189px" src="https://khulnasoft.com/assets/img/logo.svg"></a>
-  <h3><a href="https://khulnasoft.com">KhulnaSoft – The Backend Development Engine</a></h3>
-</div>
-
 # KhulnaSoft Runtime API
 
 <div align="center">
