@@ -1,6 +1,6 @@
 # KhulnaSoft Runtime API
 
-<div align="center">
+<div>
 
 [![Go Reference](https://pkg.go.dev/badge/khulnasoft.com.svg)](https://pkg.go.dev/khulnasoft.com) [![Slack](https://img.shields.io/badge/chat-on%20slack-blue?style=flat-square&logo=slack)](https://khulnasoft.com/slack) ![MPL-2 License](https://img.shields.io/github/license/khulnasoft/khulnasoft.com?style=flat-square)
 
