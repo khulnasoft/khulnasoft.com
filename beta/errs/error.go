@@ -1,0 +1,176 @@
+// Package errs provides structured error handling for KhulnaSoft applications.
+//
+// See https://khulnasoft.com/docs/develop/errors for more information about how errors work within KhulnaSoft applications.
+package errs
+
+import (
+	"net/http"
+)
+
+// An Error is an error that provides structured information
+// about the error. It includes an error code, a message,
+// optionally additional structured details about the error
+// and arbitrary key-value metadata.
+//
+// The Details field is returned to external clients.
+// The Meta field is only exposed to internal calls within KhulnaSoft.
+//
+// Internally it captures an underlying error for printing
+// and for use with errors.Is/As and call stack information.
+//
+// To provide accurate stack information, users are expected
+// to convert non-Error errors into *Error as close to the
+// root cause as possible. This is made simple with Wrap.
+type Error struct {
+	// Code is the error code to return.
+	Code ErrCode `json:"code"`
+	// Message is a descriptive message of the error.
+	Message string `json:"message"`
+	// Details are user-defined additional details.
+	Details ErrDetails `json:"details"`
+	// Meta are arbitrary key-value pairs for use within
+	// the KhulnaSoft application. They are not exposed to external clients.
+	Meta Metadata `json:"-"`
+}
+
+// Metadata represents structured key-value pairs, for attaching arbitrary
+// metadata to errors. The metadata is propagated between internal services
+// but is not exposed to external clients.
+type Metadata map[string]interface{}
+
+// Wrap wraps the err, adding additional error information.
+// If err is nil it returns nil.
+//
+// If err is already an *Error its code, message, and details
+// are copied over to the new error.
+func Wrap(err error, msg string, metaPairs ...interface{}) (_ error) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L66-L82
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// WrapCode is like Wrap but also sets the error code.
+// If code is OK it reports nil.
+func WrapCode(err error, code ErrCode, msg string, metaPairs ...interface{}) (_ error) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L86-L101
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// Convert converts an error to an *Error.
+// If the error is already an *Error it returns it unmodified.
+// If err is nil it returns nil.
+func Convert(err error) (_ error) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L106-L117
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// Code reports the error code from an error.
+// If err is nil it reports OK.
+// Otherwise if err is not an *Error it reports Unknown.
+func Code(err error) (_ ErrCode) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L122-L129
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// Meta reports the metadata included in the error.
+// If err is nil or the error lacks metadata it reports nil.
+func Meta(err error) (_ Metadata) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L133-L138
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// Details reports the error details included in the error.
+// If err is nil or the error lacks details it reports nil.
+func Details(err error) (_ ErrDetails) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L142-L147
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// Error reports the error code and message.
+func (*Error) Error() (_ string) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L150-L155
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// ErrorMessage reports the error message, joining this
+// error's message with the messages from any underlying errors.
+func (*Error) ErrorMessage() (_ string) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L159-L183
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// Unwrap returns the underlying error, if any.
+func (*Error) Unwrap() (_ error) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L186-L188
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
+
+// HTTPError writes structured error information to w using JSON encoding.
+// The status code is computed with HTTPStatus.
+//
+// If err is nil it writes:
+//
+//	{"code": "ok", "message": "", "details": null}
+func HTTPError(w http.ResponseWriter, err error) {
+	// KhulnaSoft will provide an implementation to this function at runtime, we do not expose
+	// the implementation in the API contract as it is an implementation detail, which may change
+	// between releases.
+	//
+	// The current implementation of this function can be found here:
+	//    https://github.com/khulnasoft/khulnasoft/blob/v1.41.9/runtimes/go/beta/errs/error.go#L196-L198
+	doPanic("khulnasoft apps must be run using the khulnasoft command")
+	return
+}
